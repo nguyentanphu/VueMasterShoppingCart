@@ -28,16 +28,6 @@ app.get('/products', (req, res) => {
   });
 });
 
-app.get('/products/:id', (req, res) => {
-  let id = req.params.id;
-  fs.readFile(PRODUCT_DATA_FILE, (err, data) => {
-    res.setHeader('Cache-Control', 'no-cache');
-    var data = JSON.parse(data);
-    var currentProduct = data.find(p => p.id == id);
-    res.json(currentProduct);
-  });
-});
-
 app.get('/cart', (req, res) => {
   fs.readFile(CART_DATA_FILE, (err, data) => {
     res.setHeader('Cache-Control', 'no-cache');
